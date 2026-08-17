@@ -1,0 +1,4 @@
+interface:
+  display_name: "实习线索监控"
+  short_description: "按候选人条件检索、核验、去重并维护公开实习线索静态看板"
+  default_prompt: "Use $monitor-internship-leads to scan public internship leads and update my dashboard."

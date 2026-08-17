@@ -1,0 +1,39 @@
+# 复制为 candidate.local.yml 后填写。candidate.local.yml 已被 .gitignore 排除。
+# 只写筛选条件，不要写姓名、电话、邮箱、身份证、住址、Cookie、Token 或完整简历。
+
+cities:
+  - 广州
+  - 深圳
+  - 厦门
+
+role_keywords:
+  - 商业运营
+  - 产品运营
+  - 用户运营
+  - 市场传播
+  - 内容运营
+  - 商务拓展
+  - 咨询项目
+  - 商业分析
+
+exclude_keywords:
+  - 仅限不匹配届次
+  - 纯电话销售
+
+graduation_window: "2027"
+education_level: "硕士在读"
+transferable_skills:
+  - 研究分析
+  - 项目协调
+  - 内容表达
+
+days_per_week_min: 3
+duration_months_min: 3
+languages:
+  - 中文
+  - 英文
+max_post_age_days: 30
+trust_levels:
+  - A
+  - B
+

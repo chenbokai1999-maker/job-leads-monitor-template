@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="公开社交媒体实习线索静态看板">
+  <title>公开社媒实习线索池</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="inner">
+      <h1 id="pageTitle">公开社媒实习线索池</h1>
+      <p id="pageSubtitle">公开可索引来源 · 人工核验优先 · 静态结果看板</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="notice info"><strong>运行方式：</strong>本页只展示最近一次推送的数据，不会在浏览器里主动抓取招聘网站。检索由使用者自己的 Codex 定时任务执行。</div>
+    <div class="notice warning"><strong>安全提醒：</strong>线索不代表职位真实有效。投递前核验公司主体、发布者身份和正式流程；不付款、不交押金、不下载陌生软件。</div>
+
+    <section class="metrics" aria-label="线索统计">
+      <article class="metric"><strong id="acceptedCount">0</strong><span>已保留线索</span></article>
+      <article class="metric"><strong id="aCount">0</strong><span>A级：主体可核验</span></article>
+      <article class="metric"><strong id="bCount">0</strong><span>B级：完整待复核</span></article>
+      <article class="metric"><strong id="filteredCount">0</strong><span>累计过滤</span></article>
+    </section>
+
+    <div class="scan-status" id="scanStatus"><strong>监控状态：</strong>正在加载数据。</div>
+
+    <section class="rules">
+      <article class="rule">
+        <h2>进入线索池</h2>
+        <ul>
+          <li>公司、岗位、城市、职责、到岗要求、发布日期和原帖链接完整。</li>
+          <li>A级主体可交叉验证；B级明确标注发布链路和待核验风险。</li>
+          <li>原帖仍有申请入口，或存在可核验的公司正式入口。</li>
+        </ul>
+      </article>
+      <article class="rule reject">
+        <h2>直接过滤</h2>
+        <ul>
+          <li>收费内推、培训费、押金、保证金、承诺保过。</li>
+          <li>无公司或办公地点、异常薪资、未知短链或二维码。</li>
+          <li>无法核验主体、正式流程或当前开放状态。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="toolbar" aria-label="线索筛选">
+      <input id="query" type="search" placeholder="搜索公司、岗位、平台或关键词">
+      <select id="city"><option value="all">全部城市</option></select>
+      <select id="platform"><option value="all">全部平台</option></select>
+      <select id="trust"><option value="all">全部可信度</option><option value="A">A级</option><option value="B">B级</option></select>
+      <select id="postingStatus"><option value="all">全部开放状态</option><option value="open">开放</option><option value="needs_recheck">需复核</option><option value="closed">已关闭</option></select>
+      <button id="export" type="button">导出 CSV</button>
+    </section>
+
+    <div class="section-head">
+      <div><h2>通过初筛的公开线索</h2><p>浏览器中的个人投递状态不会上传到仓库。</p></div>
+      <strong id="resultCount">0 条</strong>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>可信度</th><th>公司与岗位</th><th>城市</th><th>平台/时间</th><th>摘要</th><th>风险</th><th>原帖</th><th>我的状态</th></tr></thead>
+        <tbody id="leadBody"><tr><td colspan="8" class="empty">正在加载数据。</td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="section-head"><div><h2>最近扫描记录</h2><p>最多保留30次；不保存私人联系方式。</p></div></div>
+    <div class="log" id="scanLog"></div>
+  </main>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
