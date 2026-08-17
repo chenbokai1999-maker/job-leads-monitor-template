@@ -1,0 +1,37 @@
+{
+  "profileVersion": 1,
+  "profileConfirmed": false,
+  "lastConfirmed": null,
+  "trialStatus": "not_run",
+  "trialReviewedAt": null,
+  "searchGoal": "",
+  "jobTypes": [],
+  "locations": [],
+  "remotePolicy": "unknown",
+  "roleFamilies": [],
+  "industryPreferences": {
+    "preferred": [],
+    "excluded": []
+  },
+  "background": {
+    "education": "",
+    "graduationWindow": "",
+    "experienceSummary": "",
+    "skills": [],
+    "languages": [],
+    "workAuthorization": ""
+  },
+  "availability": {
+    "startDate": "",
+    "daysPerWeekMin": null,
+    "durationMonthsMin": null
+  },
+  "hardConstraints": [],
+  "preferences": [],
+  "excludeKeywords": [],
+  "sourcePolicy": {
+    "maxPostAgeDays": 30,
+    "trustLevels": ["A", "B"]
+  },
+  "openQuestions": []
+}

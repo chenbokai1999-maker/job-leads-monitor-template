@@ -1,5 +1,5 @@
+config/candidate.local.json
 config/candidate.local.yml
 node_modules/
 .DS_Store
 Thumbs.db
-

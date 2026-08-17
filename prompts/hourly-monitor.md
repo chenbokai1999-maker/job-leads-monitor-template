@@ -1,6 +1,19 @@
-# 每小时公开实习线索监控提示词
+# 每小时公开岗位线索监控提示词
 
-读取 `config/candidate.local.yml`，只根据其中的筛选条件检索适合该候选人的实习岗位。若文件不存在，停止并提示用户先复制 `config/candidate.example.yml`，不要从仓库历史、用户名或其他文件推断个人资料。
+使用 `$monitor-job-leads`，读取且只使用 `config/candidate.local.json` 中已经确认的需求。首先运行：
+
+```bash
+node scripts/validate-profile.mjs
+```
+
+若文件缺失、`profileConfirmed` 不是 `true`、试扫尚未批准或校验失败，立即停止；不要检索、不要修改岗位数据或扫描历史，只报告“需要先完成需求访谈或试扫确认”。不要从仓库历史、用户名、他人配置或其他文件推断资料，也不要在定时运行中自行放宽条件。
+
+## 匹配范围
+
+- 严格应用已确认的机会类型、必选/偏好/探索岗位方向、地点与远程政策、行业、背景证据、可到岗时间、硬性条件、排除项、发布日期窗口和可信度等级。
+- 先判断来源可信度，再判断候选人匹配度。硬性条件不满足时过滤；偏好岗位优先于探索岗位。
+- 个性化匹配理由只写入本轮私密报告，不写进公开 JSON；公开摘要只概括岗位职责和要求。
+- 不为了凑数扩大城市、机会类型、岗位方向、届次或专业范围。
 
 ## 信息源与访问边界
 
@@ -14,7 +27,7 @@
 ## 可信度规则
 
 - A级：公司官方账号、可交叉验证的员工/团队负责人/HR，或帖子提供可核验企业邮箱、官方招聘页、公司主体；本轮核验时仍有有效申请入口。
-- B级：公司/团队、城市、职责、到岗要求、发布日期和原帖链接完整，但发布者身份或正式流程仍需人工核验。必须在 `trustReason` 和 `risks` 中写清原因。
+- B级：公司/团队、地点、职责、适用的工作或到岗要求、发布日期和原帖链接完整，但发布者身份或正式流程仍需人工核验。必须在 `trustReason` 和 `risks` 中写清原因。
 - C级及高风险内容不进入线索数组，只计入过滤数量：收费内推、培训费/押金/保证金、承诺保过、无公司名或办公地点、异常薪资、短链接/二维码不明、批量搬运、拒绝提供企业邮箱或正式面试流程。
 
 ## 数据维护
@@ -24,23 +37,23 @@
 - `docs/data/leads.json`
 - `docs/data/scan-history.json`
 
-不要把个人姓名、联系方式、完整简历或浏览器投递状态写入仓库。浏览器状态由 `localStorage` 独立保存。
+不要把候选人画像、姓名、联系方式、完整简历、个性化匹配理由或浏览器投递状态写入仓库。浏览器状态由 `localStorage` 独立保存。
 
 每条通过初筛的线索必须包含：
 
-`id`、`trust`、`trustReason`、`company`、`title`、`city`、`platform`、`date`、`checked`、`summary`、`risks`、`url`、`status`。
+`id`、`trust`、`trustReason`、`company`、`title`、`jobType`、`roleFamily`、`city`、`platform`、`date`、`checked`、`summary`、`risks`、`url`、`status`。
 
-`status` 仅允许 `open`、`needs_recheck`、`closed`。原帖失效或停止申请时保留历史条目并更新状态与风险，不直接删除。按规范化 URL，以及“公司 + 岗位 + 城市”去重。
+`jobType` 和 `roleFamily` 必须对应本地画像中已经确认的机会类型和岗位方向。`status` 仅允许 `open`、`needs_recheck`、`closed`。原帖失效或停止申请时保留历史条目并更新状态与风险，不直接删除。按规范化 URL，以及“公司 + 岗位 + 城市”去重。
 
-每轮更新 `scan-history.json` 中的 `scanMeta` 和 `history`：记录时间、扫描数、通过数、过滤数、简短说明；`history` 只保留最近30次。无新增时明确写“本轮无新增可信社媒线索”，不要为了凑数收录旧帖或招聘号。
+每轮更新 `scan-history.json` 中的 `scanMeta` 和 `history`：记录时间、扫描数、通过数、过滤数、简短说明；`history` 只保留最近30次。无新增时明确写“本轮无新增可信岗位线索”，不要为了凑数收录旧帖或招聘号。
 
 ## 校验与发布
 
 更新后运行：
 
 ```bash
+node scripts/validate-profile.mjs
 node scripts/validate-data.mjs
 ```
 
-只有校验成功后才提交并推送 GitHub。推送使用用户自己电脑已授权的 GitHub CLI；仓库中绝不保存 PAT、SSH 私钥或其他密钥。没有推送权限时保留本地修改并明确报告，不反复尝试。
-
+只有两项校验成功后才提交并推送 GitHub。推送使用用户自己电脑已授权的 GitHub CLI；仓库中绝不保存 PAT、SSH 私钥或其他密钥。没有推送权限时保留本地修改并明确报告，不反复尝试。

@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="公开社交媒体实习线索静态看板">
-  <title>公开社媒实习线索池</title>
+  <meta name="description" content="可按个人确认需求配置的公开岗位线索静态看板">
+  <title>公开岗位线索池</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <div class="inner">
-      <h1 id="pageTitle">公开社媒实习线索池</h1>
-      <p id="pageSubtitle">公开可索引来源 · 人工核验优先 · 静态结果看板</p>
+      <h1 id="pageTitle">公开岗位线索池</h1>
+      <p id="pageSubtitle">先理解需求 · 公开来源核验 · 静态结果看板</p>
     </div>
   </header>
 
@@ -33,7 +33,7 @@
       <article class="rule">
         <h2>进入线索池</h2>
         <ul>
-          <li>公司、岗位、城市、职责、到岗要求、发布日期和原帖链接完整。</li>
+          <li>公司、岗位、地点、职责、适用的工作要求、发布日期和原帖链接完整。</li>
           <li>A级主体可交叉验证；B级明确标注发布链路和待核验风险。</li>
           <li>原帖仍有申请入口，或存在可核验的公司正式入口。</li>
         </ul>
@@ -50,6 +50,8 @@
 
     <section class="toolbar" aria-label="线索筛选">
       <input id="query" type="search" placeholder="搜索公司、岗位、平台或关键词">
+      <select id="jobType"><option value="all">全部机会类型</option></select>
+      <select id="roleFamily"><option value="all">全部岗位方向</option></select>
       <select id="city"><option value="all">全部城市</option></select>
       <select id="platform"><option value="all">全部平台</option></select>
       <select id="trust"><option value="all">全部可信度</option><option value="A">A级</option><option value="B">B级</option></select>

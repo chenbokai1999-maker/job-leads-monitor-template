@@ -1,6 +1,5 @@
 {
-  "title": "公开社媒实习线索池",
-  "subtitle": "公开可索引来源 · 人工核验优先 · 静态结果看板",
-  "storageKey": "social-intern-leads-template-v1"
+  "title": "公开岗位线索池",
+  "subtitle": "先理解需求 · 公开来源核验 · 静态结果看板",
+  "storageKey": "public-job-leads-template-v2"
 }
-

@@ -1,0 +1,4 @@
+interface:
+  display_name: "岗位需求理解与线索监控"
+  short_description: "先访谈确认个人需求，再核验、筛选和维护公开岗位线索"
+  default_prompt: "Use $monitor-job-leads to understand and confirm my needs, run a private trial search, and set up my personalized job-lead monitor."

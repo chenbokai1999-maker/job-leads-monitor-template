@@ -25,7 +25,7 @@ if (scan.history.length > 30) fail(`history has ${scan.history.length} entries; 
 if (!Number.isInteger(scan.scanMeta.filteredTotal) || scan.scanMeta.filteredTotal < 0) fail('filteredTotal must be a non-negative integer');
 if (!nonEmpty(scan.scanMeta.lastChecked) || !nonEmpty(scan.scanMeta.note)) fail('scanMeta lastChecked and note are required');
 
-const required = ['id', 'trust', 'trustReason', 'company', 'title', 'city', 'platform', 'date', 'checked', 'summary', 'risks', 'url', 'status'];
+const required = ['id', 'trust', 'trustReason', 'company', 'title', 'jobType', 'roleFamily', 'city', 'platform', 'date', 'checked', 'summary', 'risks', 'url', 'status'];
 for (const [index, lead] of leads.entries()) {
   for (const field of required) {
     if (!(field in lead)) fail(`lead ${index} missing ${field}`);
